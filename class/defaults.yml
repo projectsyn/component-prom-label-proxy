@@ -1,0 +1,3 @@
+parameters:
+  prom_label_proxy:
+    namespace: syn-prom-label-proxy

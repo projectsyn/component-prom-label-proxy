@@ -1,3 +1,21 @@
 parameters:
   prom_label_proxy:
+    multi_instance: true
     namespace: syn-prom-label-proxy
+    label: namespace
+    upstream: http://prometheus-k8s.monitoring.svc:9090
+    ingress:
+      annotations: {}
+      host: null
+    resources:
+      requests:
+        memory: 64Mi
+        cpu: 200m
+      limits:
+        memory: 128Mi
+        cpu: 500m
+    images:
+      prom-label-proxy:
+        registry: quay.io
+        image: prometheuscommunity/prom-label-proxy
+        tag: master@sha256:3e5d58c6163626df671022c2d44154bc9198ad0b42f00de7814b3ab622ff6636

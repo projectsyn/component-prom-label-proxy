@@ -10,10 +10,40 @@ default:: `syn-prom-label-proxy`
 
 The namespace in which to deploy this component.
 
+== `label`
+
+[horizontal]
+type:: string
+default:: `namespace`
+
+The label which should be enforced by the proxy.
+
+== `upstream`
+
+[horizontal]
+type:: string
+default:: `http://prometheus-k8s.monitoring.svc:9090`
+
+The upstream Prometheus endpoint to proxy requests to.
+
+== `ingress.host`
+
+[horizontal]
+type:: string
+default:: `null`
+
+The host this ingress should terminate.
+An ingress resource is only created if a host is configured.
+
 
 == Example
 
 [source,yaml]
 ----
-namespace: example-namespace
+parameters:
+  prom_label_proxy:
+    namespace: syn-thanos
+    upstream: http://thanos-query:9090
+    ingress:
+      host: metrics.example.net
 ----

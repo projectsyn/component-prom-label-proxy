@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 
-- …
+- Initial implementation ([#1])
 
-[Unreleased]: https://github.com/projectsyn/component-prom-label-proxy/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/projectsyn/component-prom-label-proxy/compare/c94f0056fad1caea52c2e6797cfd36d8f6a73281...HEAD
+
+[#1]: https://github.com/projectsyn/component-prom-label-proxy/pull/1

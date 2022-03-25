@@ -1,6 +1,7 @@
 parameters:
   prom_label_proxy:
-    multi_instance: true
+    =_metadata:
+      multi_instance: true
     namespace: syn-prom-label-proxy
     label: namespace
     upstream: http://prometheus-k8s.monitoring.svc:9090

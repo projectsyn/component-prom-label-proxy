@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/instance: prom-label-proxy
+    app.kubernetes.io/managed-by: syn
+    app.kubernetes.io/name: prom-label-proxy
+    name: prom-label-proxy
+  name: prom-label-proxy
+  namespace: syn-prom-label-proxy
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: prom-label-proxy
+      app.kubernetes.io/managed-by: syn
+      app.kubernetes.io/name: prom-label-proxy
+      name: prom-label-proxy
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations: {}
+      labels:
+        app.kubernetes.io/instance: prom-label-proxy
+        app.kubernetes.io/managed-by: syn
+        app.kubernetes.io/name: prom-label-proxy
+        name: prom-label-proxy
+    spec:
+      containers:
+        - args:
+            - --insecure-listen-address=:8080
+            - --label=namespace
+            - --upstream=http://prometheus-k8s.monitoring.svc:9090
+          env: []
+          image: quay.io/prometheuscommunity/prom-label-proxy:v0.3.0
+          imagePullPolicy: IfNotPresent
+          name: proxy
+          ports:
+            - containerPort: 8080
+              name: http
+          resources:
+            limits:
+              cpu: 500m
+              memory: 128Mi
+            requests:
+              cpu: 200m
+              memory: 64Mi
+          stdin: false
+          tty: false
+          volumeMounts: []
+      imagePullSecrets: []
+      initContainers: []
+      securityContext:
+        runAsUser: 10001
+      terminationGracePeriodSeconds: 30
+      volumes: []

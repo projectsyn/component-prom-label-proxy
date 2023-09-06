@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/instance: prom-label-proxy
+    app.kubernetes.io/managed-by: syn
+    app.kubernetes.io/name: prom-label-proxy
+    name: prom-label-proxy
+  name: prom-label-proxy
+  namespace: syn-prom-label-proxy
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/instance: prom-label-proxy
+    app.kubernetes.io/managed-by: syn
+    app.kubernetes.io/name: prom-label-proxy
+    name: prom-label-proxy
+  type: ClusterIP

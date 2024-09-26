@@ -39,7 +39,7 @@ spec:
             - --label=namespace
             - --upstream=http://prometheus-k8s.monitoring.svc:9090
           env: []
-          image: quay.io/prometheuscommunity/prom-label-proxy:v0.3.0
+          image: quay.io/prometheuscommunity/prom-label-proxy:v0.11.0
           imagePullPolicy: IfNotPresent
           name: proxy
           ports:
